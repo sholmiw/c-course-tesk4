@@ -2,10 +2,7 @@
 #include "CircularInt.hpp"
 
 
-// destructor
-CircularInt::~CircularInt(){
-     delate *this;
-}
+
 // +=
 CircularInt& CircularInt:: operator +=(int hour){
     int newtime =currnt+hour;
