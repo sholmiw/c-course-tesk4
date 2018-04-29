@@ -7,8 +7,7 @@ class CircularInt {
         
 // cunstructor     
       CircularInt (int a,int b): begin(a),end(b),currnt(a){}
-// destructor
-      ~CircularInt();
+
 // +
  	CircularInt  operator +(CircularInt y);
         CircularInt  operator +(int y);
