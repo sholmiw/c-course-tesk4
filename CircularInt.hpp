@@ -7,50 +7,68 @@ struct CircularInt {
         
      
       CircularInt (int a,int b): begin(a),end(b),currnt(a){}
+// +
+ 	CircularInt  operator +(CircularInt y);
+        CircularInt  operator +(int y);
+        friend CircularInt operator+(int x,CircularInt y);
+// +=
         CircularInt & operator +=(int hour);
-         CircularInt  operator ++(); 
-       friend CircularInt operator-(int x,CircularInt y);
+	CircularInt& operator +=(CircularInt cr);
+	friend CircularInt& operator +=(int a, CircularInt& cr);
+// ++
+        CircularInt  operator ++(); 
+	const CircularInt & operator ++(int);
+// -
+       	friend CircularInt operator-(int x,CircularInt y);
         CircularInt operator-(int y);
-         CircularInt operator-(CircularInt y);
-         CircularInt  operator +(CircularInt y);
-          CircularInt  operator +(int y);
-           friend CircularInt operator+(int x,CircularInt y);
-            const CircularInt & operator ++(int);
-            bool operator ==(const CircularInt& cr2);
-             bool operator !=(const CircularInt& cr2);
-              CircularInt & operator *=(const int x);
-              friend std::ostream & operator<<(std::ostream &output,CircularInt a);
-              CircularInt& operator +=(CircularInt cr);
-              friend CircularInt& operator +=(int a, CircularInt& cr);
-              CircularInt& operator-=(CircularInt y);
-              CircularInt& operator-=(int y);
-                CircularInt  operator --(); 
-                CircularInt & operator --(int);
-                bool operator ==(int x);
-               friend bool operator !=(int x, CircularInt& cr2);
-               friend bool operator ==(int x, CircularInt& cr2);
-                bool operator !=(int x);
-               friend CircularInt operator *=(const int x, CircularInt cr2);
-                CircularInt & operator *=(CircularInt x);
-                CircularInt  operator *(int x);
-                CircularInt  operator *(CircularInt cr2);
-             friend CircularInt  operator *(int x, CircularInt& cr2);
-             bool operator > (CircularInt &b);
-             friend bool operator > (int const x,CircularInt const &a);
-              bool operator > (int const x);
-              bool operator < (CircularInt const &b);
-              bool operator < (int const x);
-              friend bool operator < (int const x,CircularInt const &a);
-              bool operator <= (CircularInt const &b);
-              bool operator <= (int const x);
-              friend bool operator <= (int const x,CircularInt const &a);
-              bool operator >=(CircularInt const &b);
-              bool operator >= (int const x);
-              friend bool operator >= (int const x,CircularInt const &a);
-              CircularInt operator /(CircularInt& cr2);
-              CircularInt operator /(const int x);
-              friend CircularInt operator /(int x,CircularInt& cr2);
-              CircularInt & operator /=(const int x);
+        CircularInt operator-(CircularInt y);
+// ==         
+        bool operator ==(const CircularInt& cr2);
+	bool operator ==(int x);
+	friend bool operator ==(int x, CircularInt& cr2);
+// !=
+        bool operator !=(const CircularInt& cr2);
+	bool operator !=(int x);
+	friend bool operator !=(int x, CircularInt& cr2);
+
+// << output              
+        friend std::ostream & operator<<(std::ostream &output,CircularInt a);
+// -=              
+        CircularInt& operator-=(CircularInt y);
+        CircularInt& operator-=(int y);
+// --
+        CircularInt  operator --(); 
+        CircularInt & operator --(int);
+// *=                
+        CircularInt & operator *=(const int x);
+	friend CircularInt operator *=(const int x, CircularInt cr2);
+        CircularInt & operator *=(CircularInt x);
+// *
+        CircularInt  operator *(int x);
+        CircularInt  operator *(CircularInt cr2);
+        friend CircularInt  operator *(int x, CircularInt& cr2);
+// >
+        bool operator > (CircularInt &b);
+        friend bool operator > (int const x,CircularInt const &a);
+        bool operator > (int const x);
+// <
+        bool operator < (CircularInt const &b);
+        bool operator < (int const x);
+        friend bool operator < (int const x,CircularInt const &a);
+// <=
+        bool operator <= (CircularInt const &b);
+        bool operator <= (int const x);
+        friend bool operator <= (int const x,CircularInt const &a);
+// >=
+        bool operator >=(CircularInt const &b);
+        bool operator >= (int const x);
+        friend bool operator >= (int const x,CircularInt const &a);
+// /
+        CircularInt operator /(CircularInt& cr2);
+        CircularInt operator /(const int x);
+        friend CircularInt operator /(int x,CircularInt& cr2);
+// /=
+        CircularInt & operator /=(const int x);
               
               
               
