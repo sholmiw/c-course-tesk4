@@ -70,9 +70,10 @@ class CircularInt {
         friend CircularInt operator /(int x,CircularInt& cr2);
 // /=
         CircularInt & operator /=(const int x);
-	
+	CircularInt operator=(const CircularInt & old); 
 // new
 // =
+	CircularInt& operator=(int y);
 /*
 	CircularInt & operator = (int x);
 	CircularInt & operator = (CircularInt& cr2);             

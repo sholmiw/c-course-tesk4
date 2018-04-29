@@ -194,6 +194,14 @@ CircularInt CircularInt::operator=(const CircularInt & old){
     currnt=old.currnt;
     return *this;
 }
+
+CircularInt & CircularInt::operator=(int y){
+    
+    currnt=y;
+    return*this;
+    
+}
+
 /*
 CircularInt & CircularInt::operator = (int x){
 	currnt=x;
