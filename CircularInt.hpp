@@ -73,9 +73,11 @@ class CircularInt {
 	
 // new
 // =
+/*
 	CircularInt & operator = (int x);
 	CircularInt & operator = (CircularInt& cr2);             
         //friend CircularInt operator =( int x,CircularInt& cr2);
+*/
 // >>     
         friend std::istream & operator >> (std::istream is, CircularInt a);
 // help function
