@@ -1,5 +1,5 @@
 # include <iostream>
-#include "clock.hpp"
+#include "CircularInt.hpp"
 
 
 CircularInt& CircularInt:: operator +=(int hour){
@@ -233,3 +233,36 @@ void CircularInt::getInRange(){
         }
     }
 }
+double CircularInt::operator/ (CircularInt& cir1){
+    
+    if(currnt % cir1.currnt != 0){
+        string message = "There is no number x in {" + to_string(begin) + "," 
+                       + to_string(end) +"} such that x*" + to_string(cir1.currnt) + "=" + to_string(currnt);
+        throw message;
+    }
+    else{
+        CircularInt temp {begin, end, currnt};
+        int ans = currnt / cir1.currnt;
+        temp.currnt=ans;
+        temp.getInRange();
+        ans = temp.currnt;
+        return ans;
+    }
+}
+
+double CircularInt::operator/ (int divi){ 
+    if(currnt % divi != 0){
+        string message = "There is no number x in {" + to_string(begin) + "," 
+                       + to_string(end) +"} such that x*" + to_string(divi) + "=" + to_string(currnt);
+        throw message;
+    }
+    else{
+        CircularInt temp {begin, end, currnt};
+        int ans = currnt / divi;
+        temp.currnt=ans;
+        temp.getInRange();
+        ans = temp.currnt;
+        return ans;
+    }
+}
+
