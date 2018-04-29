@@ -216,10 +216,10 @@ std:: istream & operator >> (std::istream &is, CircularInt a){
 
 // help function
 void CircularInt::setOnRange(){
-	while (this->current <begin || this->current>end){
+	while (this->currnt <begin || this->currnt>end){
 		if(this->currnt>end){
 			this->currnt-= (end-begin+1);
-		}else if(this->ccurrnt <begin){
+		}else if(this->currnt <begin){
 			this->currnt-= (end-begin+1);
 		}
 	} 
