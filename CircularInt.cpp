@@ -1,5 +1,5 @@
 # include <iostream>
-#include "CircularInt.hpp"
+#include "clock.hpp"
 
 
 CircularInt& CircularInt:: operator +=(int hour){
@@ -68,12 +68,12 @@ bool CircularInt::operator !=(const CircularInt &cr2){
         return false;
     return true;
 }
-CircularInt & CircularInt::operator *=(const int x){
-    int z=currnt;
-    for(int i=1;i<x;i++)
-  *this+=z;
-    return *this;
-}
+//CircularInt & CircularInt::operator *=(double x){
+   // int z=currnt;
+  //  for(int i=1;i<x;i++)
+ // *this+=z;
+//    return *this;
+//}
 
 CircularInt& CircularInt:: operator +=(CircularInt cr){
   *this+=cr.currnt;
@@ -132,11 +132,11 @@ CircularInt& CircularInt:: operator +=(CircularInt cr){
         return hour2;
      }
    
-   CircularInt & CircularInt::operator *=(CircularInt x){
-       *this*=x.currnt;
+   //CircularInt & CircularInt::operator *=(CircularInt x){
+   //    *this*=x.currnt;
        
-       return*this;
-   }
+    //   return*this;
+   //}
    
    bool CircularInt::operator > (CircularInt &b){
     if (currnt>b.currnt) return true;
@@ -209,4 +209,27 @@ CircularInt & CircularInt::operator=(int y){
     currnt=y;
     return*this;
     
+}
+
+CircularInt& CircularInt::operator*= (double mult){ 
+    currnt = currnt * mult;
+    this->getInRange();
+    return *this;
+}
+
+CircularInt& CircularInt::operator*= (CircularInt& circ){ 
+    currnt = currnt * circ.currnt;
+    this->getInRange();
+    return *this;
+}
+
+void CircularInt::getInRange(){
+    while(currnt < begin || currnt > end){
+        if(currnt > end){
+            currnt -= (end-(begin-1));
+        }
+        else if(currnt < begin){
+            currnt += (end-(begin-1));
+        }
+    }
 }

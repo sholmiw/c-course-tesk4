@@ -18,7 +18,7 @@ struct CircularInt {
             const CircularInt & operator ++(int);
             bool operator ==(const CircularInt& cr2);
              bool operator !=(const CircularInt& cr2);
-              CircularInt & operator *=(const int x);
+            //  CircularInt & operator *=(double x);
               CircularInt& operator +=(CircularInt cr);
               friend CircularInt& operator +=(int a, CircularInt& cr);
               CircularInt& operator-=(CircularInt y);
@@ -30,7 +30,7 @@ struct CircularInt {
                friend bool operator ==(int x, CircularInt& cr2);
                 bool operator !=(int x);
                friend CircularInt operator *=(const int x, CircularInt cr2);
-                CircularInt & operator *=(CircularInt x);
+               // CircularInt & operator *=(CircularInt x);
                 CircularInt  operator *(int x);
                 CircularInt  operator *(CircularInt cr2);
              friend CircularInt  operator *(int x, CircularInt& cr2);
@@ -49,11 +49,20 @@ struct CircularInt {
               CircularInt operator /(CircularInt& cr2);
               CircularInt operator /(const int x);
               friend CircularInt operator /(int x,CircularInt& cr2);
-              CircularInt & operator /=(const int x);
+              CircularInt & operator /=( int x);
                friend std::ostream& operator<< (std::ostream& os, const CircularInt& c);
                friend std::istream& operator>> (std::istream& is, CircularInt& c);
                CircularInt operator=(const CircularInt & old);
                CircularInt& operator=(int y);
+//with the help of https://github.com/JosephGolubchik/Cpp_Ex5/blob/master/CircularInt.cpp 
+               CircularInt& operator*= (double mult);
+               CircularInt& operator*= (CircularInt& circ);
+               void getInRange();
+
+		
+		double operator/ (int divi);
+		double operator/ (CircularInt& circ);
+			       
               
               
               
