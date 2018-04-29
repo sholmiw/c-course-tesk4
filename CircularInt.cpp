@@ -16,7 +16,6 @@ CircularInt& CircularInt:: operator +=(CircularInt cr){
     *this+=cr.currnt;
     return *this;
 }
-
 CircularInt CircularInt::operator++(){
     CircularInt hour2(begin,end);
     hour2.currnt=currnt;
@@ -165,23 +164,7 @@ bool CircularInt::operator >= (int const x){
     if (currnt>=x) return true;
     return false;
 }
-// /
-//CircularInt CircularInt::operator /(CircularInt& cr2){
-//    double d=(double)(currnt)/cr2.currnt;
-//    CircularInt ans{begin,end};
-//    ans.currnt=(int)d;
-//    return ans;
-//}
-//CircularInt CircularInt::operator /(const int x){
-//    double d=(double)(currnt)/x;
-//    CircularInt ans{begin,end};
-//    ans.currnt=(int)d;
-//    return ans;
-//}
-CircularInt & CircularInt::operator /=(const int x){
-    (*this)=(*this)/x;
-    return *this;
-}
+
 
 CircularInt CircularInt::operator=(const CircularInt & old){
     begin=old.begin;
@@ -205,7 +188,7 @@ CircularInt& CircularInt::operator*= (CircularInt& circ){
     this->getInRange();
     return *this;
 }
-
+// for *
 void CircularInt::getInRange(){
     while(currnt < begin || currnt > end){
         if(currnt > end){
@@ -216,8 +199,12 @@ void CircularInt::getInRange(){
         }
     }
 }
-CircularInt::CircularInt(int a,int b, int c) : begin(a),end(b),currnt(c) {}
+CircularInt::CircularInt(int a,int b, int c){
+    begin=a; end=b; currnt=c;
+    this->getInRange();
+}
 
+/*
 double CircularInt::operator / (CircularInt& cir1){
 
     if(currnt % cir1.currnt != 0){
@@ -249,4 +236,189 @@ double CircularInt::operator / (int divi){
         return ans;
     }
 }
+CircularInt& CircularInt::operator/= (int divi){
+    if(currnt % divi != 0){
+        string message = "There is no number x in {" + to_string(begin) + ","
+                         + to_string(end) +"} such that x*" + to_string(divi) + "=" + to_string(currnt);
+        throw message;
+    }
+    else{
+        currnt = currnt / divi;
+        this->getInRange();
+        return *this;
+    }
+}
+double CircularInt::operator/ (CircularInt& circ){
 
+    if(currnt % circ.currnt != 0){
+        string message = "There is no number x in {" + to_string(begin) + ","
+                         + to_string(end) +"} such that x*" + to_string(circ.currnt) + "=" + to_string(currnt);
+        throw message;
+    }
+    else{
+        CircularInt temp {begin, end, currnt};
+        int ans = currnt / circ.currnt;
+        temp.currnt=ans;
+        temp.getInRange();
+        ans = temp.currnt;
+        return ans;
+    }
+}
+double CircularInt::operator/ (int divi){
+    if(currnt % divi != 0){
+        string message = "There is no number x in {" + to_string(begin) + ","
+                         + to_string(end) +"} such that x*" + to_string(divi) + "=" + to_string(currnt);
+        throw message;
+    }
+    else{
+        CircularInt temp {begin, end, currnt};
+        int ans = currnt / divi;
+        temp.currnt=ans;
+        temp.getInRange();
+        ans = temp.currnt;
+        return ans;
+    }
+}
+int operator/ (int base, CircularInt& circ){
+    CircularInt temp {circ.begin, circ.end, circ.currnt};
+    int ans = base / (circ.currnt);
+    temp.currnt=ans;
+    temp.getInRange();
+    ans = temp.currnt;
+    return ans;
+}
+CircularInt CircularInt::operator /(CircularInt& cr2){
+    double d=(double)(currnt)/cr2.currnt;
+    CircularInt ans{begin,end};
+    ans.currnt=(int)d;
+    return ans;
+}
+CircularInt CircularInt::operator /(const int x){
+    double d=(double)(currnt)/x;
+    CircularInt ans{begin,end};
+    ans.currnt=(int)d;
+    return ans;
+}
+CircularInt & CircularInt::operator /=(const int x){
+    (*this)=(*this)/x;
+    return *this;
+}
+*/
+// from:
+//https://github.com/orelshalom/CPP4/blob/master/CircularInt.cpp
+CircularInt operator/ (CircularInt cir1, CircularInt const& cir2){
+    CircularInt temp {cir1.begin, cir1.end};
+    CircularInt temp2 {cir1.begin, cir1.end};
+    temp2.currnt = cir1.currnt;
+    int c = 0;
+    for(int i = cir1.begin; i <= cir1.end; i++){
+        temp.currnt = i;
+        if(c > 0) break;
+        else{
+            if((temp*cir2) == cir1){
+                temp2.currnt = temp.currnt;
+                c++;
+            }
+        }
+    }
+    if(c == 0){
+        throw invalid_argument("THERE IS NO SUCH NUMBER!");
+    }
+    return temp2;
+}
+CircularInt operator/= (CircularInt& cir1, CircularInt const& cir2){
+    CircularInt temp {cir1.begin, cir1.end};
+    int c = 0;
+    for(int i = cir1.begin; i <= cir1.end; i++){
+        temp.currnt = i;
+        if(c > 0) break;
+        else{
+            if((temp*cir2) == cir1){
+                cir1.currnt = temp.currnt;
+                c++;
+            }
+        }
+    }
+    if(c == 0){
+        throw invalid_argument("THERE IS NO SUCH NUMBER!");
+    }
+    return cir1;
+}
+CircularInt operator/= (CircularInt& cir, int const& num){
+    CircularInt temp {cir.begin, cir.end};
+    int c = 0;
+    for(int i = cir.begin; i <= cir.end; i++){
+        temp.currnt = i;
+        if(c > 0) break;
+        else{
+            if((temp*num) == cir){
+                cir.currnt = temp.currnt;
+                c++;
+            }
+        }
+    }
+    if(c == 0){
+        throw invalid_argument("THERE IS NO SUCH NUMBER!");
+    }
+    return cir;
+}
+
+
+CircularInt operator/ (CircularInt cir, int const& num){
+    CircularInt temp {cir.begin, cir.end};
+    CircularInt temp2 {cir.begin, cir.end};
+    CircularInt temp3 {cir.begin, cir.end};
+    temp2.currnt = cir.currnt;
+    temp3.currnt = cir.currnt;
+    int c = 0;
+    for(int i = cir.begin; i <= cir.end; i++){
+        temp.currnt = i;
+        if(c > 0) break;
+        else{
+            if((temp*num) == cir){
+                temp2.currnt = temp.currnt;
+                c++;
+            }
+        }
+    }
+    if(c == 0){
+        throw invalid_argument("THERE IS NO SUCH NUMBER!");
+    }
+    temp3.currnt = temp2.currnt;
+    return temp3;
+}
+CircularInt operator/ (int const& num, CircularInt cir){
+    CircularInt temp {cir.begin, cir.end};
+    CircularInt temp2 {cir.begin, cir.end};
+    CircularInt temp3 {cir.begin, cir.end};
+    temp2.currnt = cir.currnt;
+    int c = 0;
+    for(int i = cir.begin; i <= cir.end; i++){
+        temp.currnt = i;
+        if(c > 0) break;
+        else{
+            if((temp*cir) == num){
+                temp2.currnt = temp.currnt;
+                c++;
+            }
+        }
+    }
+    if(c == 0){
+        throw invalid_argument("THERE IS NO SUCH NUMBER!");
+    }
+    temp3.currnt = temp2.currnt;
+    return temp3;
+}
+
+istream& operator>> (istream& is, CircularInt& cir){
+    int temp;
+    is >> temp;
+    if(temp>cir.end || temp<cir.begin)
+        throw std::invalid_argument( "value not in range\n" );
+    cir.currnt = temp;
+    return is;
+}
+
+ostream& operator<< (ostream& os, const CircularInt& cir){
+    return os << cir.currnt;
+}
