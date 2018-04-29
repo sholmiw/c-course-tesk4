@@ -77,7 +77,7 @@ class CircularInt {
 	CircularInt & operator = (CircularInt& cr2);             
         friend CircularInt operator =( int x,CircularInt& cr2);
 // >>     
-        friend istream & operator >> (istream is, CircularInt a);
+        friend std::istream & operator >> (istream is, CircularInt a);
 // help function
 	void setOnRange();
 	     

@@ -189,7 +189,7 @@ CircularInt & CircularInt::operator /=(const int x){
 }
 // =
 CircularInt & CircularInt::operator = (int x){
-	current=x;
+	currnt=x;
 	this->setOnRange();
 	return *this; 
 
@@ -217,10 +217,10 @@ std:: istream & operator >> (std::istream &is, CircularInt a){
 // help function
 void CircularInt::setOnRange(){
 	while (this->current <begin || this->current>end){
-		if(this->current>end){
-			this->current-= (end-begin+1);
-		}else if(this->current <begin){
-			this->current-= (end-begin+1);
+		if(this->currnt>end){
+			this->currnt-= (end-begin+1);
+		}else if(this->ccurrnt <begin){
+			this->currnt-= (end-begin+1);
 		}
 	} 
 }
