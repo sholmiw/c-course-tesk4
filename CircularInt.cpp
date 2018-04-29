@@ -222,7 +222,7 @@ CircularInt& CircularInt::operator*= (CircularInt& circ){
     this->getInRange();
     return *this;
 }
-
+using namespace std;
 void CircularInt::getInRange(){
     while(currnt < begin || currnt > end){
         if(currnt > end){
@@ -233,6 +233,7 @@ void CircularInt::getInRange(){
         }
     }
 }
+
 double CircularInt::operator/ (CircularInt& cir1){
     
     if(currnt % cir1.currnt != 0){
