@@ -173,11 +173,13 @@ CircularInt CircularInt::operator=(const CircularInt & old){
     return *this;
 }
 CircularInt & CircularInt::operator=(int y){
-
     currnt=y;
+    this->getInRange();
     return*this;
 
 }
+
+
 CircularInt& CircularInt::operator*= (double mult){
     currnt = currnt * mult;
     this->getInRange();
@@ -204,107 +206,8 @@ CircularInt::CircularInt(int a,int b, int c){
     this->getInRange();
 }
 
-/*
-double CircularInt::operator / (CircularInt& cir1){
 
-    if(currnt % cir1.currnt != 0){
-        string message = "There is no number x in {" + to_string(begin) + ","
-                         + to_string(end) +"} such that x*" + to_string(cir1.currnt) + "=" + to_string(currnt);
-        throw message;
-    }
-    else{
-        CircularInt temp {begin, end,currnt};
-        int ans = currnt / cir1.currnt;
-        temp.currnt=ans;
-        temp.getInRange();
-        ans = temp.currnt;
-        return ans;
-    }
-}
-double CircularInt::operator / (int divi){
-    if(currnt % divi != 0){
-        string message = "There is no number x in {" + to_string(begin) + ","
-                         + to_string(end) +"} such that x*" + to_string(divi) + "=" + to_string(currnt);
-        throw message;
-    }
-    else{
-        CircularInt temp {begin, end,currnt};
-        int ans = currnt / divi;
-        temp.currnt=ans;
-        temp.getInRange();
-        ans = temp.currnt;
-        return ans;
-    }
-}
-CircularInt& CircularInt::operator/= (int divi){
-    if(currnt % divi != 0){
-        string message = "There is no number x in {" + to_string(begin) + ","
-                         + to_string(end) +"} such that x*" + to_string(divi) + "=" + to_string(currnt);
-        throw message;
-    }
-    else{
-        currnt = currnt / divi;
-        this->getInRange();
-        return *this;
-    }
-}
-double CircularInt::operator/ (CircularInt& circ){
-
-    if(currnt % circ.currnt != 0){
-        string message = "There is no number x in {" + to_string(begin) + ","
-                         + to_string(end) +"} such that x*" + to_string(circ.currnt) + "=" + to_string(currnt);
-        throw message;
-    }
-    else{
-        CircularInt temp {begin, end, currnt};
-        int ans = currnt / circ.currnt;
-        temp.currnt=ans;
-        temp.getInRange();
-        ans = temp.currnt;
-        return ans;
-    }
-}
-double CircularInt::operator/ (int divi){
-    if(currnt % divi != 0){
-        string message = "There is no number x in {" + to_string(begin) + ","
-                         + to_string(end) +"} such that x*" + to_string(divi) + "=" + to_string(currnt);
-        throw message;
-    }
-    else{
-        CircularInt temp {begin, end, currnt};
-        int ans = currnt / divi;
-        temp.currnt=ans;
-        temp.getInRange();
-        ans = temp.currnt;
-        return ans;
-    }
-}
-int operator/ (int base, CircularInt& circ){
-    CircularInt temp {circ.begin, circ.end, circ.currnt};
-    int ans = base / (circ.currnt);
-    temp.currnt=ans;
-    temp.getInRange();
-    ans = temp.currnt;
-    return ans;
-}
-CircularInt CircularInt::operator /(CircularInt& cr2){
-    double d=(double)(currnt)/cr2.currnt;
-    CircularInt ans{begin,end};
-    ans.currnt=(int)d;
-    return ans;
-}
-CircularInt CircularInt::operator /(const int x){
-    double d=(double)(currnt)/x;
-    CircularInt ans{begin,end};
-    ans.currnt=(int)d;
-    return ans;
-}
-CircularInt & CircularInt::operator /=(const int x){
-    (*this)=(*this)/x;
-    return *this;
-}
-*/
-// from:
+//for / from:
 //https://github.com/orelshalom/CPP4/blob/master/CircularInt.cpp
 CircularInt operator/ (CircularInt cir1, CircularInt const& cir2){
     CircularInt temp {cir1.begin, cir1.end};
