@@ -1,5 +1,5 @@
 # include <iostream>
-#include "clock.hpp"
+#include "CircularInt.hpp"
 
 
 CircularInt& CircularInt:: operator +=(int hour){
