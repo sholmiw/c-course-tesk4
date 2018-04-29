@@ -187,3 +187,49 @@ CircularInt & CircularInt::operator /=(const int x){
     (*this)=(*this)/x;
     return *this;
 }
+// =
+CircularInt & CircularInt::operator = (int x){
+	current=x;
+	this->setOnRange();
+	return *this; 
+
+}
+
+CircularInt CircularInt::operator=(const CircularInt & cr2){
+    begin=cr2.begin;
+    end=cr2.end;
+    currnt=cr2.currnt;
+    return *this;
+}  
+  
+
+// >>
+std:: istream & operator >> (std::istream &is, CircularInt a){
+    int tmp;
+    is>>tmp;
+    if(tmp>a.end || tmp<a.begin){
+        throw std::invalid_argument("value not in range\n");
+    }
+    a.currnt=tmp;
+    return is;
+}      
+
+// help function
+void CircularInt::setOnRange(){
+	while (this->current <begin || this->current>end){
+		if(this->current>end){
+			this->current-= (end-begin+1);
+		}else if(this->current <begin){
+			this->current-= (end-begin+1);
+		}
+	} 
+}
+
+
+
+
+
+
+
+
+

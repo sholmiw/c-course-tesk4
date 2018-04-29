@@ -70,12 +70,23 @@ class CircularInt {
         friend CircularInt operator /(int x,CircularInt& cr2);
 // /=
         CircularInt & operator /=(const int x);
-              
-              
-             
+	
+// new
+// =
+	CircularInt & operator = (int x);
+	CircularInt & operator = (CircularInt& cr2);             
+        friend CircularInt operator =( int x,CircularInt& cr2);
+// >>     
+        friend istream & operator >> (istream is, CircularInt a);
+// help function
+	void setOnRange();
+	     
 };
 // 
+//new
 
+
+//old
 // <<
 inline std::ostream &  operator<<(std::ostream &output,CircularInt a){
  return output<<a.currnt;
