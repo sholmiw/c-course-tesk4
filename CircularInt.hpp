@@ -1,65 +1,139 @@
-//
-// Created by Shlomi and Alon
-//
+# include <iostream>
+#pragma once
 
-#ifndef UNTITLED2_CIRCULARINT_HPP
-#define UNTITLED2_CIRCULARINT_HPP
-#include <iostream>
-using namespace std;
-class CircularInt {
-    private:
-        //int begin,end;
-    public:
-        int begin,end,currnt; //  to add cycle=end-begin+1?
-        CircularInt (int a,int b);
-        CircularInt operator=(const CircularInt & old);
-        ~CircularInt();
-        friend ostream & operator << (ostream &output, const CircularInt a);
-        // +
-        CircularInt & operator +=(const int cr);
-        CircularInt & operator ++(); //postfix
-        const CircularInt & operator ++(int);  //prefix
-        CircularInt operator + (CircularInt y);
-        CircularInt  operator +(int y);
-        friend CircularInt operator+(int x,CircularInt y);
-        // -
-        CircularInt operator-=(int y); //TODO
+struct CircularInt {
+   
+        int begin,end,currnt;
+        
+     
+      CircularInt (int a,int b): begin(a),end(b),currnt(a){}
+        CircularInt & operator +=(int hour);
+         CircularInt  operator ++(); 
+       friend CircularInt operator-(int x,CircularInt y);
         CircularInt operator-(int y);
-        CircularInt operator-();
-        CircularInt operator-(CircularInt y);
-        CircularInt operator--(int y);// TODO: cheak if works
-
-        // == and !=
-        bool operator ==(const CircularInt& cr2);  //works!!! //do i need  friend?
-        bool operator !=(const CircularInt& cr2);   //do i need friend?
-
-        //*
-        CircularInt & operator *(const int x);
-        CircularInt & operator *=(const int x);
-
-        // /
-        CircularInt & operator /(const int x);
-        CircularInt & operator /=(const int x);
-
-//        bool operator <(int x);
-//        CircularInt & operator -(const CircularInt hour);
-//        CircularInt & operator - (int num, CircularInt hour){};
-//        CircularInt & operator - (CircularInt hour, CircularInt hour){};
-//TODO: need more operators
-
+         CircularInt operator-(CircularInt y);
+         CircularInt  operator +(CircularInt y);
+          CircularInt  operator +(int y);
+           friend CircularInt operator+(int x,CircularInt y);
+            const CircularInt & operator ++(int);
+            bool operator ==(const CircularInt& cr2);
+             bool operator !=(const CircularInt& cr2);
+              CircularInt & operator *=(const int x);
+              friend std::ostream & operator<<(std::ostream &output,CircularInt a);
+              CircularInt& operator +=(CircularInt cr);
+              friend CircularInt& operator +=(int a, CircularInt& cr);
+              CircularInt& operator-=(CircularInt y);
+              CircularInt& operator-=(int y);
+                CircularInt  operator --(); 
+                CircularInt & operator --(int);
+                bool operator ==(int x);
+               friend bool operator !=(int x, CircularInt& cr2);
+               friend bool operator ==(int x, CircularInt& cr2);
+                bool operator !=(int x);
+               friend CircularInt operator *=(const int x, CircularInt cr2);
+                CircularInt & operator *=(CircularInt x);
+                CircularInt  operator *(int x);
+                CircularInt  operator *(CircularInt cr2);
+             friend CircularInt  operator *(int x, CircularInt& cr2);
+             bool operator > (CircularInt &b);
+             friend bool operator > (int const x,CircularInt const &a);
+              bool operator > (int const x);
+              bool operator < (CircularInt const &b);
+              bool operator < (int const x);
+              friend bool operator < (int const x,CircularInt const &a);
+              bool operator <= (CircularInt const &b);
+              bool operator <= (int const x);
+              friend bool operator <= (int const x,CircularInt const &a);
+              bool operator >=(CircularInt const &b);
+              bool operator >= (int const x);
+              friend bool operator >= (int const x,CircularInt const &a);
+              CircularInt operator /(CircularInt& cr2);
+              CircularInt operator /(const int x);
+              friend CircularInt operator /(int x,CircularInt& cr2);
+              CircularInt & operator /=(const int x);
+              
+              
+              
+              
+              
+              
+              
+              
 };
+inline std::ostream &  operator<<(std::ostream &output,CircularInt a){
+ return output<<a.currnt;
+}
 
 inline CircularInt operator-(int x,CircularInt y){
-    int z= y.end-y.begin+1;
-    y.currnt= x+(z-y.currnt);
-    return y;
+ int newt= x-y.currnt;
+      if (newt<y.begin || newt>y.end){
+ int z= y.end-y.begin+1;
+ y.currnt= x+(z-y.currnt);
+ return y;}
+  else {
+         CircularInt hour2(y.begin,y.end);
+         hour2.currnt=newt;
+         return hour2;
 }
 
-
+}
 inline CircularInt operator+(int x,CircularInt y){
-
-    return y+x;
+    
+return y+x;
 
 }
 
-#endif //UNTITLED2_CIRCULARINT_HPP
+inline CircularInt& operator +=(int a, CircularInt& cr){
+ cr+=a;
+ return cr;
+ 
+}
+
+inline bool operator !=(int  x,CircularInt& cr2){
+    if (x==cr2.currnt)
+        return false;
+    return true;
+}
+inline bool operator ==(int x, CircularInt& cr2){
+ 
+return cr2==x;
+}
+ 
+
+inline CircularInt operator *=(const int x, CircularInt cr2){
+ cr2*=x;
+ return cr2;
+}
+
+ inline CircularInt  operator *(int x, CircularInt& cr2){
+  cr2=x*=cr2;
+  return cr2;
+  
+ }
+ 
+inline bool operator > (int const x,CircularInt const &a){
+    if (x>a.currnt) return true;
+    return false;
+}
+
+inline bool operator < (int const x,CircularInt const &a){
+    if (x<a.currnt) return true;
+    return false;
+}
+
+inline bool operator <= (int const x,CircularInt const &a){
+    if (x<=a.currnt) return true;
+    return false;
+}
+
+inline bool operator >= (int const x,CircularInt const &a){
+    if (x>=a.currnt) return true;
+    return false;
+}
+
+inline CircularInt operator /(int x,CircularInt& cr2){
+   int z=cr2.currnt;
+   cr2.currnt=x;
+   return cr2/z;
+   
+}
