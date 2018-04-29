@@ -1,12 +1,14 @@
 # include <iostream>
 #pragma once
 
-struct CircularInt {
-   
+class CircularInt {
+   public:
         int begin,end,currnt;
         
-     
+// cunstructor     
       CircularInt (int a,int b): begin(a),end(b),currnt(a){}
+// destructor
+      ~CircularInt();
 // +
  	CircularInt  operator +(CircularInt y);
         CircularInt  operator +(int y);
@@ -71,87 +73,79 @@ struct CircularInt {
         CircularInt & operator /=(const int x);
               
               
-              
-              
-              
-              
-              
-              
+             
 };
+// 
+
+// <<
 inline std::ostream &  operator<<(std::ostream &output,CircularInt a){
  return output<<a.currnt;
 }
-
+// -
 inline CircularInt operator-(int x,CircularInt y){
  int newt= x-y.currnt;
       if (newt<y.begin || newt>y.end){
- int z= y.end-y.begin+1;
- y.currnt= x+(z-y.currnt);
- return y;}
-  else {
+	 int z= y.end-y.begin+1;
+	 y.currnt= x+(z-y.currnt);
+	 return y;}
+      else {
          CircularInt hour2(y.begin,y.end);
          hour2.currnt=newt;
          return hour2;
+	}
 }
-
+// +
+inline CircularInt operator+(int x,CircularInt y){    
+	return y+x;
 }
-inline CircularInt operator+(int x,CircularInt y){
-    
-return y+x;
-
-}
-
+// +=
 inline CircularInt& operator +=(int a, CircularInt& cr){
- cr+=a;
- return cr;
- 
+	 cr+=a;
+	 return cr; 
 }
-
+// !=
 inline bool operator !=(int  x,CircularInt& cr2){
     if (x==cr2.currnt)
         return false;
     return true;
 }
+// ==
 inline bool operator ==(int x, CircularInt& cr2){
- 
-return cr2==x;
+	return cr2==x;
 }
- 
-
+// *=
 inline CircularInt operator *=(const int x, CircularInt cr2){
- cr2*=x;
- return cr2;
+	cr2*=x;
+	return cr2;
 }
-
- inline CircularInt  operator *(int x, CircularInt& cr2){
-  cr2=x*=cr2;
-  return cr2;
-  
- }
- 
+// *
+inline CircularInt  operator *(int x, CircularInt& cr2){
+	cr2=x*=cr2;
+	return cr2;
+}
+// > 
 inline bool operator > (int const x,CircularInt const &a){
-    if (x>a.currnt) return true;
-    return false;
+	if (x>a.currnt) return true;
+	return false;
 }
-
+// <
 inline bool operator < (int const x,CircularInt const &a){
-    if (x<a.currnt) return true;
-    return false;
+        if (x<a.currnt) return true;
+        return false;
 }
-
+// <=
 inline bool operator <= (int const x,CircularInt const &a){
-    if (x<=a.currnt) return true;
-    return false;
+        if (x<=a.currnt) return true;
+        return false;
 }
-
+// >=
 inline bool operator >= (int const x,CircularInt const &a){
-    if (x>=a.currnt) return true;
-    return false;
+    	if (x>=a.currnt) return true;
+   	return false;
 }
-
+// /
 inline CircularInt operator /(int x,CircularInt& cr2){
-   int z=cr2.currnt;
-   cr2.currnt=x;
-   return cr2/z;
-   
+	int z=cr2.currnt;
+	cr2.currnt=x;
+	return cr2/z;   
 }
