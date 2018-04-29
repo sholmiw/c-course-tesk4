@@ -82,7 +82,7 @@ class CircularInt {
         friend std::istream & operator >> (std::istream is, CircularInt a);
 // help function
 	void setOnRange();
-	     
+	CircularInt operator=(const CircularInt & old);     
 };
 // 
 //new

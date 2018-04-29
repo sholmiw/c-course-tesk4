@@ -188,6 +188,12 @@ CircularInt & CircularInt::operator /=(const int x){
     return *this;
 }
 // =
+CircularInt CircularInt::operator=(const CircularInt & old){
+    begin=old.begin;
+    end=old.end;
+    currnt=old.currnt;
+    return *this;
+}
 /*
 CircularInt & CircularInt::operator = (int x){
 	currnt=x;
@@ -203,6 +209,8 @@ CircularInt CircularInt::operator=(const CircularInt & cr2){
     return *this;
 }  
 */  
+
+
 
 // >>
 std:: istream & operator >> (std::istream &is, CircularInt a){
